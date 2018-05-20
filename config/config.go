@@ -16,6 +16,11 @@ type Config struct {
 		Password string `json:"password"`
 		DB       string `json:"db"`
 	} `json:"redis"`
+	Mongo struct {
+		Host     string `json:"host"`
+		Port 		 string `json:"password"`
+		DB       string `json:"db"`
+	} `json:"mongo"`
 	Postgres struct {
 		Host     string `json:"host"`
 		Port     string `json:"port"`

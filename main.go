@@ -9,9 +9,9 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/douglasmakey/ursho/config"
-	"github.com/douglasmakey/ursho/handler"
-	"github.com/douglasmakey/ursho/storage/postgres"
+	"github.com/Ziyang2go/ursho/config"
+	"github.com/Ziyang2go/ursho/handler"
+	"github.com/Ziyang2go/ursho/storage/mongo"
 )
 
 func main() {
@@ -26,7 +26,7 @@ func main() {
 	}
 
 	// Set use storage, select [Postgres, Filesystem, Redis ...]
-	svc, err := postgres.New(config.Postgres.Host, config.Postgres.Port, config.Postgres.User, config.Postgres.Password, config.Postgres.DB)
+	svc, err := mongo.New(config.Mongo.Host, config.Mongo.Port, config.Mongo.DB)
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -16,5 +16,10 @@
     "user": "ursho_db",
     "password": "mypass",
     "db": "ursho_db"
+  },
+  "mongo": {
+    "host": "localhost",
+    "port": "27017",
+    "db": "test"
   }
 }

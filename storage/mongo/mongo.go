@@ -1,0 +1,71 @@
+package mongo
+
+import (
+        "gopkg.in/mgo.v2"
+				"gopkg.in/mgo.v2/bson"
+				"github.com/Ziyang2go/ursho/storage"			
+)
+
+type Person struct {
+	Name string
+	Phone string
+}
+
+func New(host, port, dbName string) (storage.Service, error) {
+	db, err :=  mgo.Dial("localhost:27017")
+	if err != nil {
+		return nil, err
+	}
+	err = db.Ping()
+	if err != nil {
+		return nil, err
+	}
+
+	// Create table if not exists
+	// strQuery := "CREATE TABLE IF NOT EXISTS shortener (uid serial NOT NULL, url VARCHAR not NULL, " +
+	// 	"visited boolean DEFAULT FALSE, count INTEGER DEFAULT 0);"
+
+	// _, err = db.Exec(strQuery)
+	// if err != nil {
+	// 	return nil, err
+	// }
+	return &mongo{db}, nil
+}
+
+func (m *mongo) Close() error {
+	m.db.Close() 
+	return nil;
+}
+
+func (m *mongo) Load(code string) (string, error) { 
+	mongoId := bson.ObjectIdHex(code)
+	c := m.db.DB("test").C("shortener")
+
+	var item storage.Item
+	c.FindId(mongoId).One(&item)	
+	return item.URL, nil
+}
+
+func (m *mongo) Save(url string) (string, error) {
+	item := &storage.Item{ bson.NewObjectId(), url, false, 0}
+	c := m.db.DB("test").C("shortener")
+	err := c.Insert(item)
+
+	if err != nil {
+		return "", err
+	}
+	
+	objectIdString := item.ID.Hex()
+
+	return objectIdString, nil
+}
+
+func (m *mongo) LoadInfo(code string) (*storage.Item, error) { 
+	mongoId := bson.ObjectIdHex(code)
+	c := m.db.DB("test").C("shortener")
+	var item storage.Item
+	c.FindId(mongoId).One(&item)	
+	return &item, nil
+}
+
+type mongo struct{ db *mgo.Session }
