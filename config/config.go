@@ -18,7 +18,7 @@ type Config struct {
 	} `json:"redis"`
 	Mongo struct {
 		Host     string `json:"host"`
-		Port 		 string `json:"password"`
+		Port 		 string `json:"port"`
 		DB       string `json:"db"`
 	} `json:"mongo"`
 	Postgres struct {

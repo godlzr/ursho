@@ -12,7 +12,7 @@ type Person struct {
 }
 
 func New(host, port, dbName string) (storage.Service, error) {
-	db, err :=  mgo.Dial("localhost:27017")
+	db, err :=  mgo.Dial(host + ":" + port)
 	if err != nil {
 		return nil, err
 	}
@@ -39,7 +39,7 @@ func (m *mongo) Close() error {
 
 func (m *mongo) Load(code string) (string, error) { 
 	mongoId := bson.ObjectIdHex(code)
-	c := m.db.DB("test").C("shortener")
+	c := m.db.DB("clients").C("shortener")
 
 	var item storage.Item
 	c.FindId(mongoId).One(&item)	
@@ -48,7 +48,7 @@ func (m *mongo) Load(code string) (string, error) {
 
 func (m *mongo) Save(url string) (string, error) {
 	item := &storage.Item{ bson.NewObjectId(), url, false, 0}
-	c := m.db.DB("test").C("shortener")
+	c := m.db.DB("clients").C("shortener")
 	err := c.Insert(item)
 
 	if err != nil {
@@ -62,7 +62,7 @@ func (m *mongo) Save(url string) (string, error) {
 
 func (m *mongo) LoadInfo(code string) (*storage.Item, error) { 
 	mongoId := bson.ObjectIdHex(code)
-	c := m.db.DB("test").C("shortener")
+	c := m.db.DB("clients").C("shortener")
 	var item storage.Item
 	c.FindId(mongoId).One(&item)	
 	return &item, nil
