@@ -1,0 +1,4 @@
+name: ursho
+replicaCount: 1
+image: "ziyang2go/ursho"
+tag: 054777f759109d25ac7b505878d8c5fd2f05c443
