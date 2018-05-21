@@ -18,7 +18,7 @@
     "db": "ursho_db"
   },
   "mongo": {
-    "host": "localhost",
+    "host": "mongo",
     "port": "27017",
     "db": "clients"
   }
