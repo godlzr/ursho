@@ -21,14 +21,6 @@ func New(host, port, dbName string) (storage.Service, error) {
 		return nil, err
 	}
 
-	// Create table if not exists
-	// strQuery := "CREATE TABLE IF NOT EXISTS shortener (uid serial NOT NULL, url VARCHAR not NULL, " +
-	// 	"visited boolean DEFAULT FALSE, count INTEGER DEFAULT 0);"
-
-	// _, err = db.Exec(strQuery)
-	// if err != nil {
-	// 	return nil, err
-	// }
 	return &mongo{db}, nil
 }
 

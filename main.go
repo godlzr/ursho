@@ -18,14 +18,12 @@ func main() {
 	configPath := flag.String("config", "./config/config.json", "path of the config file")
 
 	flag.Parse()
-
 	// Read config
 	config, err := config.FromFile(*configPath)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// Set use storage, select [Postgres, Filesystem, Redis ...]
 	svc, err := mongo.New(config.Mongo.Host, config.Mongo.Port, config.Mongo.DB)
 	if err != nil {
 		log.Fatal(err)

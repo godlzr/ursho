@@ -4,7 +4,7 @@
     "port": "8080"
   },
   "options": {
-    "prefix": "http://localhost:8080/"
+    "prefix": "https://mythreekit.com/share/"
   },
   "redis": {},
   "files_system": {

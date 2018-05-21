@@ -16,7 +16,7 @@ func New(prefix string, storage storage.Service) http.Handler {
 	mux := http.NewServeMux()
 	h := handler{prefix, storage}
 	mux.HandleFunc("/share/encode/", responseHandler(h.encode))
-	mux.HandleFunc("/share", h.redirect)
+	mux.HandleFunc("/share/", h.redirect)
 	mux.HandleFunc("/share/info/", responseHandler(h.decode))
 	return mux
 }
@@ -74,7 +74,7 @@ func (h handler) decode(w io.Writer, r *http.Request) (interface{}, int, error) 
 		return nil, http.StatusMethodNotAllowed, fmt.Errorf("Method %s not allowed", r.Method)
 	}
 
-	code := r.URL.Path[len("/info/"):]
+	code := r.URL.Path[len("/share/info/"):]
 
 	model, err := h.storage.LoadInfo(code)
 	if err != nil {
@@ -88,9 +88,9 @@ func (h handler) redirect(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		return
-	}
-	code := r.URL.Path[len("/"):]
-
+	}	
+	code := r.URL.Path[len("/share/"):]
+	
 	url, err := h.storage.Load(code)
 	if err != nil {
 		w.WriteHeader(http.StatusNotFound)
