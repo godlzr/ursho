@@ -15,9 +15,9 @@ import (
 func New(prefix string, storage storage.Service) http.Handler {
 	mux := http.NewServeMux()
 	h := handler{prefix, storage}
-	mux.HandleFunc("/encode/", responseHandler(h.encode))
-	mux.HandleFunc("/", h.redirect)
-	mux.HandleFunc("/info/", responseHandler(h.decode))
+	mux.HandleFunc("/share/encode/", responseHandler(h.encode))
+	mux.HandleFunc("/share", h.redirect)
+	mux.HandleFunc("/share/info/", responseHandler(h.decode))
 	return mux
 }
 
