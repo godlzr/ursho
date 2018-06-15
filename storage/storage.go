@@ -1,7 +1,7 @@
 package storage
 
 import (
-	"gopkg.in/mgo.v2/bson"			
+	"gopkg.in/mgo.v2/bson"
 )
 
 type Service interface {
@@ -12,7 +12,8 @@ type Service interface {
 }
 
 type Item struct {
-  ID   bson.ObjectId `json:"_id" bson:"_id"`
+	ID   bson.ObjectId `json:"_id" bson:"_id"`
+	UUID int64 `json:"uuid"`
 	URL     string `json:"url"`
 	Visited bool   `json:"visited"`
 	Count   int    `json:"count"`

@@ -88,10 +88,10 @@ func (h handler) redirect(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		return
-	}	
+	}
 	code := r.URL.Path[len("/share/"):]
-	
 	url, err := h.storage.Load(code)
+	fmt.Println(url)
 	if err != nil {
 		w.WriteHeader(http.StatusNotFound)
 		w.Write([]byte("URL Not Found"))
