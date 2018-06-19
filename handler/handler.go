@@ -98,5 +98,5 @@ func (h handler) redirect(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	http.Redirect(w, r, string(url), http.StatusMovedPermanently)
+	http.Redirect(w, r, string(url), 301)
 }
