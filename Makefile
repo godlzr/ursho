@@ -2,9 +2,11 @@
 
 release: clean build
 
-build:
-	docker build -t ursho-builder .
-	docker run ursho-builder | docker build -t ursho -
+gitsha = $(shell git rev-parse HEAD)
+
+build: 
+	sudo docker build -t ursho-builder .
+	sudo docker run ursho-builder | sudo docker build -t ziyang2go/ursho:$(gitsha) -
 
 # remove previous images and containers
 clean:
