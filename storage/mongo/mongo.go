@@ -4,8 +4,8 @@ import (
 				"gopkg.in/mgo.v2"
 				"time"
 				"gopkg.in/mgo.v2/bson"
-				"github.com/Ziyang2go/ursho/storage"
-				"github.com/Ziyang2go/ursho/base62"
+				storage "ursho/storage"
+				base62 "ursho/base62"
 				"math/rand"
 )
 

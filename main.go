@@ -8,9 +8,9 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
-	"github.com/Ziyang2go/ursho/config"
-	"github.com/Ziyang2go/ursho/handler"
-	"github.com/Ziyang2go/ursho/storage/mongo"
+	config "ursho/config"
+	handler "ursho/handler"
+	mongo "ursho/storage/mongo"
 )
 
 func main() {

@@ -8,7 +8,7 @@ import (
 	"log"
 	"net/http"
 	"strings"
-	"github.com/Ziyang2go/ursho/storage"
+	storage "ursho/storage"
 )
 
 // New returns an http handler for the url shortener.
