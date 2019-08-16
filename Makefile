@@ -6,7 +6,7 @@ gitsha = $(shell git rev-parse HEAD)
 
 build: 
 	sudo docker build -t ursho-builder .
-	sudo docker run ursho-builder | sudo docker build -t ziyang2go/ursho:$(gitsha) -
+	sudo docker run ursho-builder | sudo docker build -t godlzr/ursho:$(gitsha) -
 
 # remove previous images and containers
 clean:

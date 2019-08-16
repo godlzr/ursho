@@ -1,10 +1,10 @@
 FROM golang:latest
 
-ADD . /go/src/github.com/Ziyang2go/ursho/
+WORKDIR /app
 
-WORKDIR /go/src/github.com/Ziyang2go/ursho/
+COPY . .
 
-RUN go get && go build
+RUN go mod download
 
 RUN rm Dockerfile
 

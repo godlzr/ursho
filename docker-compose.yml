@@ -2,7 +2,7 @@ version: '3'
 services:
   ursho:
     restart: always
-    image: ursho
+    image: godlzr/ursho:df069306b87c955752d4e684c5cf07cef43f5655
     ports:
       - 8080:8080
     depends_on:

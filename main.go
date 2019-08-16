@@ -10,7 +10,7 @@ import (
 	"os/signal"
 	config "ursho/config"
 	handler "ursho/handler"
-	mongo "ursho/storage/mongo"
+	mongodb "ursho/storage/mongodb"
 )
 
 func main() {
@@ -23,7 +23,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	svc, err := mongo.New(config.Mongo.Host, config.Mongo.Port, config.Mongo.DB)
+	svc, err := mongodb.New(config.Mongo.Host, config.Mongo.Port, config.Mongo.DB)
 	if err != nil {
 		log.Fatal(err)
 	}

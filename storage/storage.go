@@ -1,7 +1,7 @@
 package storage
 
 import (
-	"gopkg.in/mgo.v2/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 type Service interface {
@@ -12,7 +12,7 @@ type Service interface {
 }
 
 type Item struct {
-	ID   bson.ObjectId `json:"_id" bson:"_id"`
+	ID   primitive.ObjectID `json:"_id" bson:"_id"`
 	UUID int64 `json:"uuid"`
 	URL     string `json:"url"`
 	Visited bool   `json:"visited"`
